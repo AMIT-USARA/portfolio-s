@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const filePath = path.join(process.cwd(), "content/blog", `${params.slug}.md`);
+  const { slug } = await params;
+  const filePath = path.join(process.cwd(), "content/blog", `${slug}.md`);
 
   if (!fs.existsSync(filePath)) return notFound();
 
